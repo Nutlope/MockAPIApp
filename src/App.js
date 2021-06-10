@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Profile from "./Profile";
 
 function App() {
   const fetchData = () => {
@@ -17,11 +18,18 @@ function App() {
     fetchData();
   }, []);
 
-  console.log("data is: ", data);
   return (
     <div className="App">
-      <h1> Names </h1>
-      <ul>{data && data.map((obj) => <li key={obj.id}>{obj.name}</li>)}</ul>
+      {data &&
+        data.map((obj) => (
+          <Profile
+            key={obj.id}
+            name={obj.name}
+            email={obj.email}
+            website={obj.website}
+            phone={obj.phone}
+          />
+        ))}
     </div>
   );
 }
